@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getProduct } from "@/lib/api";
+import { ProductDetails } from "@/components/ProductDetails";
 
 export default async function ProductPage({
   params,
@@ -19,23 +20,7 @@ export default async function ProductPage({
         ← Back to products
       </Link>
 
-      <div className="mt-6">
-        <Image
-          src={product.thumbnail}
-          alt={product.title}
-          width={600}
-          height={400}
-          className="w-full rounded-lg object-cover"
-          priority
-        />
-
-        <h1 className="mt-4 text-2xl font-semibold">{product.title}</h1>
-        <p className="mt-1 text-sm text-zinc-500">
-          {product.brand} · {product.category}
-        </p>
-        <p className="mt-2 text-xl font-semibold">${product.price}</p>
-        <p className="mt-4 text-zinc-600">{product.description}</p>
-      </div>
+      <ProductDetails product={product} />
     </main>
   );
 }
